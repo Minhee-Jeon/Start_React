@@ -1,25 +1,14 @@
-import React from 'react'; //node_modules에 설치된 모듈을 import 구문으로 불러와 사용할 수 있다. Node.js에서는 import(X) require(O)로 패키지를 불러온다.
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'; 
 
-function App() { //함수형 컴포넌트: App이라는 컴포넌트를 만들어 준다. 프로젝트에서 컴포넌트를 렌더링하면 함수에서 반환하는 내용을 나타낸다.
+function App() { 
+  //<div>나 <Fragment>나 <>로 감싸줘야 한다!
+  // Virtual DOM에서 컴포넌트 변화를 감지할 때 효율성을 위해 컴포넌트 내부는 하나의 DOM트리 구조로 이뤄져야 한다는 규칙이 있다.
+  // Parsing error: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>?
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <> 
+      <h1>리액트 안녕!</h1>
+      <h2>잘 작동하니?</h2>
+    </>
   );
 }
 
