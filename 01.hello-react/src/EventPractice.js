@@ -6,6 +6,41 @@ class EventPractice extends Component {
         message: ''
     }
 
+    // 임의 메서드 만들기 : 기본 방식
+    // constructor(props) {
+    //     super(props);
+    //     this.handleChange = this.handleChange.bind(this);
+    //     this.handleClick = this.handleClick.bind(this);
+    // }
+
+    // handleChange(e) {
+    //     this.setState({
+    //         message: e.target.value
+    //     });
+    // }
+
+    // handleClick(e) {
+    //     alert(this.set.message);
+    //     this.setState({
+    //         message: ''
+    //     });
+    // }
+
+    // 임의 메서드 만들기 : 바벨의 transform-class-properties 문법.
+    //                  새 메서드를 만들 때마다 constructor를 수정하지 않아도 OK
+    handleChange = (e) => {
+        this.setState({
+            message: e.target.value
+        });
+    }
+
+    handleClick = () => {
+        alert(this.set.message);
+        this.setState({
+            message: ''
+        });
+    }
+
     render() {
         return (
             <div>
@@ -15,23 +50,9 @@ class EventPractice extends Component {
                     name="message"
                     placeholder="아무거나 입력해 보세요"
                     value={this.state.message}
-                    onChange={
-                     (e) => {
-                         // console.log(e.target.value); //비동기적으로 이벤트 객체 참조 시 e.persist()
-                         this.setState({
-                             message: e.target.value
-                         })
-                     }   
-                    }
+                    onChange={this.handleChange}
                 />
-                <button onClick={
-                    () => {
-                        alert(this.state.message);
-                        this.setState({
-                            message: ''
-                        });
-                    }
-                }>확인</button>
+                <button onClick={this.handleClick}>확인</button>
             </div>
         );
     }
