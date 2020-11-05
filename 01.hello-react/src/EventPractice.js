@@ -3,40 +3,21 @@ import React, { Component } from 'react';
 class EventPractice extends Component {
 
     state = {
+        username: '',
         message: ''
     }
 
-    // 임의 메서드 만들기 : 기본 방식
-    // constructor(props) {
-    //     super(props);
-    //     this.handleChange = this.handleChange.bind(this);
-    //     this.handleClick = this.handleClick.bind(this);
-    // }
-
-    // handleChange(e) {
-    //     this.setState({
-    //         message: e.target.value
-    //     });
-    // }
-
-    // handleClick(e) {
-    //     alert(this.set.message);
-    //     this.setState({
-    //         message: ''
-    //     });
-    // }
-
-    // 임의 메서드 만들기 : 바벨의 transform-class-properties 문법.
-    //                  새 메서드를 만들 때마다 constructor를 수정하지 않아도 OK
     handleChange = (e) => {
         this.setState({
-            message: e.target.value
+            // 객체 안에서 key를 [ ]로 감싸면 그 안에 넣은 레퍼런스가 가리키는 실제 값이 key로 사용돼요. -> 'username': 'e.target.value'
+            [e.target.name]: e.target.value
         });
     }
 
     handleClick = () => {
-        alert(this.set.message);
+        alert(this.state.username + ': ' + this.state.message);
         this.setState({
+            username: '',
             message: ''
         });
     }
@@ -45,6 +26,13 @@ class EventPractice extends Component {
         return (
             <div>
                 <h1>이벤트 연습</h1>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="사용자명"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                />
                 <input
                     type="text"
                     name="message"
