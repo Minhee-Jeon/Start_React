@@ -13,17 +13,14 @@ class Counter extends Component {
                 <h1>{number}</h1>
                 <h2>바뀌지 않는 값: {fixedNumber}</h2>
                 <button onClick={() => {
-                    // this.setState({ number: number + 1 });
-                    // this.setState({ number: this.state.number + 1}); // this.setState를 두번 사용해도 버튼 클릭마다 숫자가 1씩만 더해져요.
-                        this.setState(prevState => { // 화살표 함수에서 값을 반환하고 싶으면 { }를 생략하면 돼요.
-                            return {
-                                number: prevState.number + 1
-                            };
-                        });
-                        // 위 코드와 아래 코드는 완전히 똑같은 기능을 해요. 함수에서 바로 객체를 반환한다는 의미예요.
-                        this.setState(prevState => ({
-                                number: prevState.number + 1
-                            }));
+                     this.setState(
+                         { number: number + 1 },
+                            //setState로 값 업데이트 후 특정 작업을 하고 싶으면 두번째 인자로 콜백함수를 등록해 작업을 처리할 수 있어요.
+                            () => {
+                                console.log('방금 setState가 호출되었습니다');
+                                console.log(this.state);
+                            }
+                         );
                     }}
                 >
                     +1
